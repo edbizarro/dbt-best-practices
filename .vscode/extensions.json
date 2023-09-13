@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "bastienboutonnet.vscode-dbt",
+    "bstruct.vscode-bigquery",
+    "butchland.vscode-dbt-bigquery-power-user",
+    "editorconfig.editorconfig",
+    "jjuanramos.dbt-bigquery-preview",
+    "ms-python.python",
+    "redhat.vscode-yaml",
+    "samuelcolvin.jinjahtml",
+    "shinichi-takii.sql-bigquery",
+    "visualstudioexptteam.vscodeintellicode"
+  ]
+}

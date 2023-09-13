@@ -1,0 +1,72 @@
+[sqlfluff]
+verbose = 0
+nocolor = False
+dialect = postgres
+templater = dbt
+rules = None
+
+output_line_length = 120
+runaway_limit = 10
+ignore_templated_areas = True
+
+
+large_file_skip_byte_limit = 0
+large_file_skip_char_limit = 0
+
+max_line_length = 110
+
+# Excluding this rule will allow USING
+exclude_rules = structure.using, structure.column_order, layout.long_lines
+
+### OPINIONATED DEFAULTS
+
+[sqlfluff:templater:dbt]
+project_dir = .
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = true
+
+# Some rules can be configured directly from the config common to other rules.
+[sqlfluff:rules]
+allow_scalar = True
+single_table_references = unqualified
+unquoted_identifiers_policy = all
+
+[sqlfluff:indentation]
+indented_joins = False
+template_blocks_indent = True
+tab_space_size = 4
+indent_unit = space
+
+# Some rules have their own specific config.
+
+[layout:type:comma]
+line_position = trailing
+
+[sqlfluff:rules:capitalisation.keywords]  # Keywords - L010
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.identifiers]  # Unquoted identifiers - L014
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:layout.long_lines]
+ignore_comment_lines = True
+
+[sqlfluff:rules:references.keywords]  # Keyword identifiers - L029
+unquoted_identifiers_policy = none
+
+[sqlfluff:rules:capitalisation.functions]  # Function names - L030
+capitalisation_policy = lower
+
+[sqlfluff:rules:convention.select_trailing_comma] # L038
+select_clause_trailing_comma = forbid
+
+[sqlfluff:rules:capitalisation.literals]  # Null & Boolean Literals - L040
+capitalisation_policy = lower
+
+[sqlfluff:rules:structure.subquery]
+# By default, allow subqueries in from clauses, but not join clauses. - L042
+forbid_subquery_in = join
+
+[sqlfluff:rules:convention.count_rows]  # Consistent syntax to count all rows - L047
+prefer_count_1 = True

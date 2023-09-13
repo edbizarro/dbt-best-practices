@@ -1,0 +1,10 @@
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+.env
+.vscode/**/*
+*.DS_Store
+dbt_packages/
+logs/
+target/

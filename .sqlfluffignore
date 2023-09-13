@@ -1,0 +1,6 @@
+.local/
+.vscode/
+dbt_modules/
+dbt_packages/
+logs/
+target/

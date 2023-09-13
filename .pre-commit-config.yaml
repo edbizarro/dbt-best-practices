@@ -1,0 +1,132 @@
+---
+default_stages: [commit, push]
+default_language_version:
+  python: python3
+
+minimum_pre_commit_version: '2.18'
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+      - id: pretty-format-json
+        args: [--autofix]
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: [--format, parsable, --strict]
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+    rev: 0.2.3
+    hooks:
+      - id: yamlfmt
+        args: [--mapping, '2', --sequence, '4', --offset, '2', --width, '150']
+
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.4
+    hooks:
+      - id: forbid-tabs
+        exclude: Makefile
+      - id: remove-tabs
+        exclude: Makefile
+        args: [--whitespaces-count, '2']
+      - id: forbid-crlf
+      - id: remove-crlf
+
+  - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
+    rev: v1.1.1
+    hooks:
+      - id: dbt-deps
+        files: \.(yml)$
+      - id: dbt-compile
+      - id: dbt-docs-generate
+      - id: remove-script-semicolon
+      - id: check-script-semicolon
+      - id: check-script-has-no-table-name
+      - id: check-script-ref-and-source
+      - id: check-model-has-description
+        files: ^models/
+        exclude: \/intermediate\/
+      - id: check-source-has-loader
+        files: ^models/
+      - id: check-source-has-freshness
+        files: ^models/
+        args: [--freshness, error_after, warn_after, --]
+      - id: check-model-has-tests
+        files: ^models/
+        exclude: \/intermediate\/
+        args: [--test-cnt, '1', --]
+      - id: check-script-ref-and-source
+      - id: check-model-has-properties-file
+        files: ^models/
+        exclude: \/intermediate\/
+
+      - id: check-model-name-contract
+        name: Check name contract - Staging
+        args: [--pattern, (base_|stg_|int_).*]
+        files: models/staging/
+
+      - id: check-model-name-contract
+        name: Check name contract - Marts
+        args: [--pattern, (dim_|fct_|int_|dm_).*]
+        files: models/marts/
+        exclude: (base|intermediate)/.*
+
+      - id: check-column-name-contract
+        name: Check name contract - BOOL
+        files: ^models/
+        exclude: (base|intermediate)/.*
+        args: [--pattern, ^(is|has|do|can)_.*, --dtype, BOOL]
+
+      - id: check-column-name-contract
+        name: Check name contract - TIMESTAMP
+        files: ^models/
+        exclude: (base|intermediate)/.*
+        args: [--pattern, (.*)(_at|_at_utc|_at_brt)$$, --dtype, TIMESTAMP]
+
+      - id: check-column-name-contract
+        name: Check name contract - DATETIME
+        files: ^models/
+        exclude: (base|intermediate)/.*
+        args: [--pattern, (.*)(_time|_time_brt)$, --dtype, DATETIME]
+
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 2.3.2
+    hooks:
+      - id: sqlfluff-lint
+        additional_dependencies: [dbt-postgres==1.6.2, sqlfluff-templater-dbt==2.3.2]
+      - id: sqlfluff-fix
+        additional_dependencies: [dbt-postgres==1.6.2, sqlfluff-templater-dbt==2.3.2]
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint-docker
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        types: [python]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-annotations==3.0.1
+          - flake8-docstrings==1.7.0
