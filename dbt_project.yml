@@ -1,17 +1,12 @@
 ---
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
+
 name: dbt_best_practices
 version: 1.0.0
 config-version: 2
+require-dbt-version: '>=1.2.1'
 
-# This setting configures which "profile" dbt uses for this project.
 profile: dbt_best_practices
 
-# These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
 model-paths: [models]
 analysis-paths: [analyses]
 test-paths: [tests]
@@ -19,17 +14,25 @@ seed-paths: [seeds]
 macro-paths: [macros]
 snapshot-paths: [snapshots]
 
-clean-targets:         # directories to be removed by `dbt clean`
+clean-targets:
   - target
   - dbt_packages
+  - logs
 
+vars:
+  dbt_date:time_zone: America/Sao_Paulo
+  global.time_zone: America/Sao_Paulo
+  global.value_not_set: (N/A)
+  global.numeric_value_not_set: 0
+  global.bool_value_not_set: false
+  global.timestamp_value_not_set: '0001-01-01 00:00:00'
+  global.date_value_not_set: '0001-01-01'
 
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
+query-comment:
+  comment: '{{ query_comment(node) }}'
+  append: false
+  job-label: false
 
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
 models:
   dbt_best_practices:
     # Config indicated by + and applies to all files under models/example/
