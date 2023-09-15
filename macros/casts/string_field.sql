@@ -1,4 +1,4 @@
-{%- macro string_field(field, cast_type='string', case_null='(N/A)', uppercase=True) -%}
+{%- macro string_field(field, cast_type='text', case_null='(N/A)', uppercase=True) -%}
 
 {% set null_value = var('global.value_not_set') %}
 {% if uppercase %}

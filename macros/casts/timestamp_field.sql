@@ -1,4 +1,4 @@
-{%- macro timestamp_field(field, cast_type='TIMESTAMP', case_null='"0001-01-01 00:00:00"', convert_timezone = False) -%}
+{%- macro timestamp_field(field, cast_type='timestamp', case_null='"0001-01-01 00:00:00"', convert_timezone = False) -%}
 {% if convert_timezone %}
 {% set timezone = var("global.time_zone") %}
 {% endif %}
