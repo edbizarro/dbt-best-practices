@@ -1,0 +1,19 @@
+---
+version: 2
+
+macros:
+  - name: string_field
+    description: '{{ doc("string_field") }}'
+    arguments:
+      - name: field
+        type: string
+        description: Nome do campo a ser transformado.
+      - name: cast_type
+        type: string
+        description: Tipo do campo após a transformação.
+      - name: case_null
+        type: string
+        description: Valor do campo para substituir caso o mesmo seja nulo.
+      - name: uppercase
+        type: boolean
+        description: Indica se devemos aplicar a função upper.
