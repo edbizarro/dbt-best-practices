@@ -1,0 +1,84 @@
+---
+version: 2
+models:
+  - name: stg_sales
+    description: Sales data
+    columns:
+      - name: order_number
+        description: ''
+        data_type: text
+        tests:
+          - not_null
+      - name: quantity_ordered
+        description: ''
+        data_type: bigint
+      - name: price_each
+        description: ''
+        data_type: numeric
+      - name: orderlinenumber
+        description: ''
+        data_type: bigint
+      - name: sales
+        description: ''
+        data_type: numeric
+      - name: order_date
+        description: ''
+        data_type: date
+      - name: status
+        description: ''
+        data_type: text
+      - name: qtr_id
+        description: ''
+        data_type: text
+      - name: month_id
+        description: ''
+        data_type: text
+      - name: year_id
+        description: ''
+        data_type: text
+      - name: product_line
+        description: ''
+        data_type: text
+      - name: msrp
+        description: ''
+        data_type: text
+      - name: product_code
+        description: ''
+        data_type: text
+      - name: customer_name
+        description: ''
+        data_type: text
+      - name: phone
+        description: ''
+        data_type: text
+      - name: address_line1
+        description: ''
+        data_type: text
+      - name: address_line2
+        description: ''
+        data_type: text
+      - name: city
+        description: ''
+        data_type: text
+      - name: state
+        description: ''
+        data_type: text
+      - name: postal_code
+        description: ''
+        data_type: text
+      - name: country
+        description: ''
+        data_type: text
+      - name: territory
+        description: ''
+        data_type: text
+      - name: contact_lastname
+        description: ''
+        data_type: text
+      - name: contact_firstname
+        description: ''
+        data_type: text
+      - name: dealsize
+        description: ''
+        data_type: text
+sources: []

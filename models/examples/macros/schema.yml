@@ -1,0 +1,29 @@
+---
+version: 2
+models:
+  - name: casts_example
+    description: Model to demonstrate different macros
+    columns:
+      - name: order_number
+        description: ''
+        data_type: text
+        tests:
+          - not_null
+      - name: customer_name
+        description: ''
+        data_type: text
+      - name: product_line
+        description: ''
+        data_type: text
+      - name: contact_firstname
+        description: ''
+        data_type: text
+      - name: quantity_ordered
+        description: ''
+        data_type: bigint
+      - name: price_each
+        description: ''
+        data_type: numeric
+      - name: order_date
+        description: ''
+        data_type: date

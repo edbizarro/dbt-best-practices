@@ -16,5 +16,20 @@ services:
         source: pg-data
         target: ${DB_INSIDE_VOLUME}
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - 8080:80
+    volumes:
+      - type: volume
+        source: pgadmin-data
+        target: /var/lib/pgadmin
+
 volumes:
   pg-data:
+  pgadmin-data:

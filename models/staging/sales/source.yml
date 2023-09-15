@@ -1,0 +1,70 @@
+---
+sources:
+  - name: sales_data
+    schema: public_seed
+    description: Sales data from seed file
+    loader: seed
+
+    freshness:
+      warn_after:
+        count: 1
+        period: day
+      error_after:
+        count: 2
+        period: day
+
+    loaded_at_field: cast("ORDERDATE" as timestamp)
+
+    tables:
+      - name: seed_sales_data_sample
+        columns:
+          - name: ORDERNUMBER
+            data_type: integer
+          - name: QUANTITYORDERED
+            data_type: integer
+          - name: PRICEEACH
+            data_type: double precision
+          - name: ORDERLINENUMBER
+            data_type: integer
+          - name: SALES
+            data_type: double precision
+          - name: ORDERDATE
+            data_type: text
+          - name: STATUS
+            data_type: text
+          - name: QTR_ID
+            data_type: integer
+          - name: MONTH_ID
+            data_type: integer
+          - name: YEAR_ID
+            data_type: integer
+          - name: PRODUCTLINE
+            data_type: text
+          - name: MSRP
+            data_type: integer
+          - name: PRODUCTCODE
+            data_type: text
+          - name: CUSTOMERNAME
+            data_type: text
+          - name: PHONE
+            data_type: text
+          - name: ADDRESSLINE1
+            data_type: text
+          - name: ADDRESSLINE2
+            data_type: text
+          - name: CITY
+            data_type: text
+          - name: STATE
+            data_type: text
+          - name: POSTALCODE
+            data_type: text
+          - name: COUNTRY
+            data_type: text
+          - name: TERRITORY
+            data_type: text
+          - name: CONTACTLASTNAME
+            data_type: text
+          - name: CONTACTFIRSTNAME
+            data_type: text
+          - name: DEALSIZE
+            data_type: text
