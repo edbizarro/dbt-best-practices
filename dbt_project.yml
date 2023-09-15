@@ -28,13 +28,20 @@ vars:
   global.timestamp_value_not_set: '0001-01-01 00:00:00'
   global.date_value_not_set: '0001-01-01'
 
+seeds:
+  dbt_best_practices:
+    +schema: seed
+
 query-comment:
   comment: '{{ query_comment(node) }}'
   append: false
   job-label: false
 
 models:
+  +dbt-osmosis: schema.yml
+
   dbt_best_practices:
+    +materialized: table
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
